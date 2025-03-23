@@ -1,3 +1,4 @@
+{% load static %}  <!-- Make sure this is at the top -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,13 +10,12 @@
   </head>
 
   <body>
-    <!-- navbar starts -->
 
     <div class="navbar">
+      <span class="sans-serif">AgriSens</span>
       <a href="{% url 'index' %}" class="home-link">Home</a>
   </div>
-
-  <!-- navbar ends-->
+  
 
     <div class="container">
       <header class="hero">

@@ -173,13 +173,21 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.sans-serif{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    padding: 5px 30px;
+}
+
 .home-link{
+    margin-left: 70rem;
 text-decoration: none;
-font-size: 1rem;
+font-size: 1.2rem;
 font-weight: normal;
 color: white;
 text-transform: uppercase;
-padding: 10px 15px;
+padding: 5px 15px;
 display: inline-block;
 }
 
@@ -490,6 +498,7 @@ display: inline-block;
 <body>
 
     <div class="navbar">
+        <span class="sans-serif">AgriSens</span>
         <a href="{% url 'index' %}" class="home-link">Home</a>
     </div>
     
