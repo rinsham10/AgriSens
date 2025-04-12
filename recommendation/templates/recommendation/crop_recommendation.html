@@ -523,14 +523,14 @@ display: inline-block;
         <div class="separator"></div>
         
         <div class="form-container">
-            <form method="POST">
+           
+            <form method="POST" id="cropForm">
                 {% csrf_token %}
                 
-                <!-- Removed the form-grid div wrapper and put all input groups in a linear layout -->
                 <div class="input-group">
                     <label for="nitrogen">Nitrogen (N)</label>
                     <div class="input-with-icon">
-                        <input type="number" step="any" id="nitrogen" name="nitrogen" required placeholder="e.g., 80">
+                        <input type="number" step="any" id="nitrogen" name="nitrogen" required placeholder="e.g., 80" min="10" max="120">
                         <span class="input-unit">kg/ha</span>
                     </div>
                 </div>
@@ -538,7 +538,7 @@ display: inline-block;
                 <div class="input-group">
                     <label for="phosphorus">Phosphorus (P)</label>
                     <div class="input-with-icon">
-                        <input type="number" step="any" id="phosphorus" name="phosphorus" required placeholder="e.g., 40">
+                        <input type="number" step="any" id="phosphorus" name="phosphorus" required placeholder="e.g., 40" min="10" max="150">
                         <span class="input-unit">kg/ha</span>
                     </div>
                 </div>
@@ -546,7 +546,7 @@ display: inline-block;
                 <div class="input-group">
                     <label for="potassium">Potassium (K)</label>
                     <div class="input-with-icon">
-                        <input type="number" step="any" id="potassium" name="potassium" required placeholder="e.g., 50">
+                        <input type="number" step="any" id="potassium" name="potassium" required placeholder="e.g., 50" min="10" max="200">
                         <span class="input-unit">kg/ha</span>
                     </div>
                 </div>
@@ -554,7 +554,7 @@ display: inline-block;
                 <div class="input-group">
                     <label for="temperature">Temperature</label>
                     <div class="input-with-icon">
-                        <input type="number" step="any" id="temperature" name="temperature" required placeholder="e.g., 25">
+                        <input type="number" step="any" id="temperature" name="temperature" required placeholder="e.g., 25" min="5" max="35">
                         <span class="input-unit">°C</span>
                     </div>
                 </div>
@@ -562,7 +562,7 @@ display: inline-block;
                 <div class="input-group">
                     <label for="humidity">Humidity</label>
                     <div class="input-with-icon">
-                        <input type="number" step="any" id="humidity" name="humidity" required placeholder="e.g., 65">
+                        <input type="number" step="any" id="humidity" name="humidity" required placeholder="e.g., 65" min="10" max="100">
                         <span class="input-unit">%</span>
                     </div>
                 </div>
@@ -570,20 +570,21 @@ display: inline-block;
                 <div class="input-group">
                     <label for="ph">pH Level</label>
                     <div class="input-with-icon">
-                        <input type="number" step="any" id="ph" name="ph" required placeholder="e.g., 6.5">
+                        <input type="number" step="any" id="ph" name="ph" required placeholder="e.g., 6.5" min="1" max="15">
                     </div>
                 </div>
                 
                 <div class="input-group">
                     <label for="rainfall">Rainfall</label>
                     <div class="input-with-icon">
-                        <input type="number" step="any" id="rainfall" name="rainfall" required placeholder="e.g., 120">
+                        <input type="number" step="any" id="rainfall" name="rainfall" required placeholder="e.g., 120" min="10" max="300">
                         <span class="input-unit">mm</span>
                     </div>
                 </div>
                 
                 <button type="submit" class="submit-btn">Recommend Ideal Crop</button>
             </form>
+            
             
             {% if recommended_crop %}
             <div class="result">
@@ -596,5 +597,39 @@ display: inline-block;
             {% endif %}
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+        
+            form.addEventListener("submit", function (event) {
+                let isValid = true;
+        
+                function validateInput(id, min, max) {
+                    const input = document.getElementById(id);
+                    const value = parseFloat(input.value);
+                    if (isNaN(value) || value < min || value > max) {
+                        isValid = false;
+                        alert(`${input.name} must be between ${min} and ${max}`);
+                        input.focus();
+                    }
+                }
+        
+                validateInput("nitrogen", 10, 120);
+                validateInput("phosphorus", 10, 150);
+                validateInput("potassium", 10, 200);
+                validateInput("temperature", 5, 35);
+                validateInput("humidity", 10, 100);
+                validateInput("ph", 1, 15);
+                validateInput("rainfall", 10, 300);
+        
+                if (!isValid) {
+                    event.preventDefault(); // Stop form submission if validation fails
+                }
+            });
+        });
+        </script>
+        
+
 </body>
 </html>
