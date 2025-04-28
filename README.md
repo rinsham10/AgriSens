@@ -1,13 +1,13 @@
-#Agrisens 
+# Agrisens 
 An intelligent crop recommendation system that suggests the best crop to cultivate based on soil and environmental conditions.
 
-#Features
+## Features
 Recommend the most suitable crop based on input parameters
 User-friendly and responsive web interface
 Real-time predictions
 Built with Python, Django, HTML, CSS, JavaScript
 
-#Inputs
+## Inputs
 Nitrogen level (N)
 Phosphorus level (P)
 Potassium level (K)
@@ -16,10 +16,10 @@ Humidity
 Soil pH
 Rainfall
 
-#Goal
+## Goal
 Help farmers and agriculturists make better crop choices to maximize yield and sustainability.
 
-#Tech Stack
+## Tech Stack
 Python
 Django
 HTML, CSS, JavaScript
