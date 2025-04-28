@@ -24,3 +24,8 @@ Python
 Django
 HTML, CSS, JavaScript
 Machine Learning (for prediction logic)
+
+## Setup
+1. Create a virtual environment
+2. Run `pip install -r requirements.txt`
+3. `python manage.py runserver`
